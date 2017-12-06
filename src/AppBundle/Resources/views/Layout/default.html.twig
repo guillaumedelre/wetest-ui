@@ -1,0 +1,67 @@
+{% extends "@App/base.html.twig" %}
+
+{% block body_class %}hold-transition skin-black sidebar-mini{% endblock %}
+
+{% block body_content %}
+    <div class="wrapper">
+        <!-- Main Header -->
+        {% include "@App/Common/main-header.html.twig" %}
+
+        <!-- Left side column. contains the logo and sidebar -->
+        {% include "@App/Common/main-sidebar.html.twig" %}
+
+        <!-- Content Wrapper. Contains page content -->
+        {% block content_wrapper %}
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        {% block content_header %}
+                            Page Header
+                            <small>Optional description</small>
+                        {% endblock %}
+                    </h1>
+                    <ol class="breadcrumb">
+                        {% block content_breadcrumb %}
+                            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                            <li class="active">Here</li>
+                        {% endblock %}
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content container-fluid">
+                    {% block main_content %}{% endblock %}
+                </section>
+            </div>
+        {% endblock %}
+
+        <!-- Main Footer -->
+        {% include "@App/Common/main-footer.html.twig" %}
+
+        <!-- Control Sidebar -->
+        {% include "@App/Common/control-sidebar.html.twig" %}
+
+        <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- DataTables -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('.table.datatable').DataTable({
+                'paging': true,
+                'lengthChange': true,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true
+            });
+        });
+    </script>
+{% endblock %}

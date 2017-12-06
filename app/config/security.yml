@@ -1,0 +1,37 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        webservice:
+            id: AppBundle\Security\User\WebserviceUserProvider
+
+    encoders:
+        AppBundle\Security\User\WebserviceUser: plaintext
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        secured:
+            pattern: ^/
+            provider: webservice
+            anonymous: ~
+            form_login:
+                login_path: security_login
+                check_path: security_login
+                default_target_path: app_dashboard_index
+                failure_path: security_login
+                remember_me: true
+            remember_me:
+                secret: "%secret%"
+            logout:
+                path:   logout
+                target: security_login
+                invalidate_session: true
+
+    access_control:
+        - { path: ^/security/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/wetest, roles: IS_AUTHENTICATED_FULLY }

@@ -1,0 +1,10 @@
+menus:
+    mainMenu:
+        children:
+            item1:
+                label: 'Item 1'
+                options:
+                    - route: 'app_default_index'
+                    - attributes:
+                        id: 'item_1'
+                        class: 'fa fa-help'

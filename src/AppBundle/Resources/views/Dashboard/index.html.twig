@@ -1,0 +1,49 @@
+{% extends '@App/Layout/default.html.twig' %}
+
+{% block content_header %}
+    Dashboard
+    <small>Projects overview</small>
+{% endblock %}
+
+{% block main_content %}
+    <div class="row">
+        {% for project in projects(app.user) %}
+            <div class="col-md-12">
+                <div class="box box-widget widget-user">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <a href="{{ url('app_project_index', {'projectId': project.id}) }}">
+                        <div class="widget-user-header bg-aqua-active">
+                            <h3 class="widget-user-username">{{ project.title|capitalize }}</h3>
+                            <h5 class="widget-user-desc">{{ project.description }}</h5>
+                        </div>
+                    </a>
+                    <div class="widget-user-image">
+                        <img class="img-circle" src="" data-src="holder.js/90x90?text=logo">
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-sm-4 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">12</h5>
+                                    <span class="description-text">RESOURCES</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">124</h5>
+                                    <span class="description-text">DEFINITIONS</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="description-block">
+                                    <h5 class="description-header">523</h5>
+                                    <span class="description-text">TESTS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

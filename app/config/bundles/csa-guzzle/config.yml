@@ -1,0 +1,9 @@
+csa_guzzle:
+    profiler: '%kernel.debug%'
+    logger: true
+    clients:
+        wetest_api:
+            config: # you can specify the options as in http://docs.guzzlephp.org/en/latest/quickstart.html#creating-a-client
+                base_uri: 'http://127.0.0.1:8080'
+                timeout: 2.0
+            middleware: ['debug', 'authentication']
